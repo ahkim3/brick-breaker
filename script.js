@@ -4,7 +4,17 @@
  *    noStroke, random, stroke,strokeWeight,windowHeight, remove,LEFT_ARROW,RIGHT_ARROW, windowWidth, width, mouseX, mouseY, pop, collideCircleCircle, collideRectCircle, findIndex, rect, keyIsDown, text
  */
 
-let lives, playerNumber, paddleOne, paddleTwo, ballOne, ballTwo, brickW, brickH, bricks, score, gameIsOver;
+let lives,
+  playerNumber,
+  paddleOne,
+  paddleTwo,
+  ballOne,
+  ballTwo,
+  brickW,
+  brickH,
+  bricks,
+  score,
+  gameIsOver;
 
 function setup() {
   createCanvas(windowWidth - 20, windowHeight - 20);
@@ -146,7 +156,7 @@ class Ball {
     if (this.yPosition >= height) {
       lives -= 1;
     }
-    
+
     this.xPosition += this.xVelocity;
     this.yPosition += this.yVelocity;
   }
@@ -184,9 +194,8 @@ class Brick {
   }
 }
 
-function drawBricks()
-{
-    for (let i = 0; i < bricks.length; i++) {
+function drawBricks() {
+  for (let i = 0; i < bricks.length; i++) {
     if (
       collideRectCircle(
         bricks[i].xPosition,
@@ -199,7 +208,7 @@ function drawBricks()
       )
     ) {
       bricks.splice(i, 1);
-      ballOne.yVelocity*=-1;
+      ballOne.yVelocity *= -1;
     } else if (
       collideRectCircle(
         bricks[i].xPosition,
@@ -211,23 +220,20 @@ function drawBricks()
         ballTwo.diameter
       )
     ) {
-      bricks.splice(i, 1); 
-      ballTwo.yVelocity*=-1
-      
+      bricks.splice(i, 1);
+      ballTwo.yVelocity *= -1;
     } else {
       fill(20);
       bricks[i].draw();
     }
   }
-  if(bricks==[])
-  {
-    text("CONGRATULATIONS", width/2, height/2);
+  if (bricks == []) {
+    text("CONGRATULATIONS", width / 2, height / 2);
   }
 }
 
-function gameOver()
-{
-  if(ballOne.yPosition>height&&ballTwo.yPosition>height){
-    text("GAME OVER", width/2, height/2);
+function gameOver() {
+  if (ballOne.yPosition > height && ballTwo.yPosition > height) {
+    text("GAME OVER", width / 2, height / 2);
   }
 }
